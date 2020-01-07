@@ -1,0 +1,7 @@
+{
+  "name": "myWorkingHours",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
