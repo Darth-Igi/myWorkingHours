@@ -1,0 +1,24 @@
+{
+  "days_per_week": "Days per Week",
+  "dismiss": "Dismiss",
+  "error": {
+    "popup_error_not_up_to_date": "App is not up to date",
+    "popup_error_no_connection":"No connection",
+    "popup_error_no_permission": "No permission",
+    "popup_error_network_error": "Network error",
+    "popup_error_login_failed": "Login failed",
+    "popup_error_authentication_failed": "Authentication failed",
+    "popup_error_server_not_available": "Server currently not available",
+    "popup_error_unauthorized_call": "You are not logged in",
+    "popup_error_scan_canceled": "Scan canceled",
+    "popup_unexpected_error": "Unexpected error"
+  },
+  "federal_state": "Federal State",
+  "hours_per_week": "Hours per Week",
+  "main_title": "My Working Hours",
+  "please_wait": "Please wait...",
+  "save": "Save",
+  "select": "Select",
+  "user_settings": "User Settings",
+  "vacation_days_per_year": "Vacation Days per Year"
+}

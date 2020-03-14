@@ -1,0 +1,3 @@
+export const HTTP_STATUS_OK = 200
+export const HTTP_STATUS_FORBIDDEN = 403
+export const HTTP_STATUS_SERVICE_UNAVAILABLE = 503

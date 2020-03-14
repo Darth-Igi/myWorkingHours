@@ -1,3 +1,5 @@
 {
-  "extends": ["tslint-react"]
+  "extends": ["tslint-react"],
+  "semicolon": [false, "always"],
+  "quotemark": [true, "single", "jsx-double"]
 }

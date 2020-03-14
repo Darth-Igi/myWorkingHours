@@ -1,0 +1,24 @@
+{
+  "days_per_week": "Wochenarbeitstage",
+  "dismiss": "Abbrechen",
+  "error": {
+    "popup_error_not_up_to_date": "Die App ist nicht aktuell",
+    "popup_error_no_connection":"Keine Internetverbindung",
+    "popup_error_no_permission": "Keine Berechtigung",
+    "popup_error_network_error": "Netzwerkfehler",
+    "popup_error_login_failed": "Anmeldung fehlgeschlagen",
+    "popup_error_authentication_failed": "Passworteingabe fehlgeschlagen",
+    "popup_error_server_not_available": "Server vorübergehend nicht verfügbar",
+    "popup_error_unauthorized_call": "Sie sind nicht angemeldet!",
+    "popup_error_scan_canceled": "Sie haben den Scan abgebrochen!",
+    "popup_unexpected_error": "Unerwarteter Fehler"
+  },
+  "federal_state": "Bundesland",
+  "hours_per_week": "Wochenstunden",
+  "main_title": "Meine Arbeitszeiten",
+  "please_wait": "Bitte warten...",
+  "save": "Speichern",
+  "select": "Auswählen",
+  "user_settings": "Benutzereinstellungen",
+  "vacation_days_per_year": "Urlaubstage pro Jahr"
+}
