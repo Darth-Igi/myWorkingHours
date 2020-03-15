@@ -13,7 +13,9 @@ export default (
     hoursPerWeek: 0,
     daysPerWeek: 0,
     vacationDaysPerYear: 0,
-    tempUserSettings: {}
+    employedSince: null,
+    currentOvertime: 0,
+    tempUserSettings: {},
   },
   action: any
 ) => {
@@ -26,6 +28,8 @@ export default (
         hoursPerWeek: action.payload.hoursPerWeek,
         daysPerWeek: action.payload.daysPerWeek,
         vacationDaysPerYear: action.payload.vacationDaysPerYear,
+        employedSince: action.payload.employedSince,
+        currentOvertime: action.payload.currentOvertime,
         isModalOpen: false,
         tempUserSettings: {},
       }
@@ -36,7 +40,9 @@ export default (
           federalState: action.payload.federalState,
           hoursPerWeek: action.payload.hoursPerWeek,
           daysPerWeek: action.payload.daysPerWeek,
-          vacationDaysPerYear: action.payload.vacationDaysPerYear
+          vacationDaysPerYear: action.payload.vacationDaysPerYear,
+          employedSince: action.payload.employedSince,
+          currentOvertime: action.payload.currentOvertime,
         }
       }
     case 'USER_SETTINGS_UPDATE_TEMP_ONE_VALUE':
@@ -57,7 +63,9 @@ export default (
           federalState: state.federalState,
           hoursPerWeek: state.hoursPerWeek,
           daysPerWeek: state.daysPerWeek,
-          vacationDaysPerYear: state.vacationDaysPerYear
+          vacationDaysPerYear: state.vacationDaysPerYear,
+          employedSince: state.employedSince,
+          currentOvertime: state.currentOvertime,
         }
       }
     case 'USER_SETTINGS_CLOSE_MODAL':

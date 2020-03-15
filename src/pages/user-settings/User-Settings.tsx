@@ -16,7 +16,7 @@ import {
   IonToolbar,
   isPlatform,
   IonSelect,
-  IonSelectOption
+  IonSelectOption, IonDatetime
 } from '@ionic/react'
 import {Trans, withTranslation} from 'react-i18next'
 import {close} from 'ionicons/icons'
@@ -48,7 +48,9 @@ const UserSettings: React.FC<UserSettings> = ({userSettings, dispatch, t}) => {
           federalState: tempUserSettings.federalState,
           hoursPerWeek: tempUserSettings.hoursPerWeek,
           daysPerWeek: tempUserSettings.daysPerWeek,
-          vacationDaysPerYear: tempUserSettings.vacationDaysPerYear
+          vacationDaysPerYear: tempUserSettings.vacationDaysPerYear,
+          employedSince: tempUserSettings.employedSince,
+          currentOvertime: tempUserSettings.currentOvertime,
         }
       })
     }, error => console.error(error))
@@ -127,6 +129,26 @@ const UserSettings: React.FC<UserSettings> = ({userSettings, dispatch, t}) => {
               value={tempUserSettings.vacationDaysPerYear}
               onIonChange={event => handleChange(event)}
             />
+          </IonItem>
+          <IonItem>
+            <IonLabel position="stacked"><Trans>current_overtime</Trans><IonText color="danger"> *</IonText></IonLabel>
+            <IonInput
+              inputmode="decimal"
+              required
+              type="number"
+              name="currentOvertime"
+              value={tempUserSettings.currentOvertime}
+              onIonChange={event => handleChange(event)}
+            />
+          </IonItem>
+          <IonItem>
+            <IonLabel position="stacked"><Trans>employed_since</Trans><IonText color="danger"> *</IonText></IonLabel>
+            <IonDatetime
+              displayFormat="DD. MMM. YYYY"
+              placeholder={t('select_date')}
+              name="employedSince"
+              value={tempUserSettings.employedSince}
+              onIonChange={event => handleChange(event)}></IonDatetime>
           </IonItem>
           <IonItem>
             <IonLabel><Trans>federal_state</Trans></IonLabel>
