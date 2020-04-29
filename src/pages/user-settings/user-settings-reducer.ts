@@ -5,6 +5,18 @@ const replaceOneValue = (object: any, key: string, value: any) => {
   return obj
 }
 
+export type UserSettings = {
+  isLoading: boolean,
+  isModalOpen: boolean,
+  federalState: string,
+  hoursPerWeek: number,
+  daysPerWeek: number,
+  vacationDaysPerYear: number,
+  captureSince: string,
+  initialOvertime: number,
+  tempUserSettings: UserSettings,
+}
+
 export default (
   state = {
     isLoading: false,
@@ -13,8 +25,8 @@ export default (
     hoursPerWeek: 0,
     daysPerWeek: 0,
     vacationDaysPerYear: 0,
-    employedSince: null,
-    currentOvertime: 0,
+    captureSince: null,
+    initialOvertime: 0,
     tempUserSettings: {},
   },
   action: any
@@ -28,8 +40,8 @@ export default (
         hoursPerWeek: action.payload.hoursPerWeek,
         daysPerWeek: action.payload.daysPerWeek,
         vacationDaysPerYear: action.payload.vacationDaysPerYear,
-        employedSince: action.payload.employedSince,
-        currentOvertime: action.payload.currentOvertime,
+        captureSince: action.payload.captureSince,
+        initialOvertime: action.payload.initialOvertime,
         isModalOpen: false,
         tempUserSettings: {},
       }
@@ -41,8 +53,8 @@ export default (
           hoursPerWeek: action.payload.hoursPerWeek,
           daysPerWeek: action.payload.daysPerWeek,
           vacationDaysPerYear: action.payload.vacationDaysPerYear,
-          employedSince: action.payload.employedSince,
-          currentOvertime: action.payload.currentOvertime,
+          captureSince: action.payload.captureSince,
+          initialOvertime: action.payload.initialOvertime,
         }
       }
     case 'USER_SETTINGS_UPDATE_TEMP_ONE_VALUE':
@@ -64,8 +76,8 @@ export default (
           hoursPerWeek: state.hoursPerWeek,
           daysPerWeek: state.daysPerWeek,
           vacationDaysPerYear: state.vacationDaysPerYear,
-          employedSince: state.employedSince,
-          currentOvertime: state.currentOvertime,
+          captureSince: state.captureSince,
+          initialOvertime: state.initialOvertime,
         }
       }
     case 'USER_SETTINGS_CLOSE_MODAL':

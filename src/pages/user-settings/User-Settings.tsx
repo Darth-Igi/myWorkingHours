@@ -1,5 +1,4 @@
 import React, {FormEvent} from 'react'
-// @ts-ignore
 import {connect} from 'react-redux'
 import {Plugins} from '@capacitor/core'
 import {
@@ -22,16 +21,18 @@ import {Trans, withTranslation} from 'react-i18next'
 import {close} from 'ionicons/icons'
 
 import {FederalStates} from '../../utils/static-variables.types'
+import {UserSettings} from './user-settings-reducer'
+import moment from 'moment'
 
 const {Storage} = Plugins
 
-type UserSettings = {
-  userSettings: any,
+type UserSettingsComponent = {
+  userSettings: UserSettings,
   dispatch: any,
   t: any,
 }
 
-const UserSettings: React.FC<UserSettings> = ({userSettings, dispatch, t}) => {
+const UserSettingsComponent: React.FC<UserSettingsComponent> = ({userSettings, dispatch, t}) => {
   const slot = isPlatform('ios') ? 'primary' : 'start'
   const {tempUserSettings} = userSettings
 
@@ -49,19 +50,21 @@ const UserSettings: React.FC<UserSettings> = ({userSettings, dispatch, t}) => {
           hoursPerWeek: tempUserSettings.hoursPerWeek,
           daysPerWeek: tempUserSettings.daysPerWeek,
           vacationDaysPerYear: tempUserSettings.vacationDaysPerYear,
-          employedSince: tempUserSettings.employedSince,
-          currentOvertime: tempUserSettings.currentOvertime,
+          captureSince: tempUserSettings.captureSince,
+          initialOvertime: tempUserSettings.initialOvertime
         }
       })
     }, error => console.error(error))
   }
 
   const handleChange = (event: any) => {
+    const value = event.target.name === 'captureSince' ? moment(event.target.value).format('YYYY-MM-DD') : event.target.value
+
     dispatch({
       type: 'USER_SETTINGS_UPDATE_TEMP_ONE_VALUE',
       payload: {
         key: event.target.name,
-        value: event.target.value
+        value: value
       }
     })
   }
@@ -131,23 +134,23 @@ const UserSettings: React.FC<UserSettings> = ({userSettings, dispatch, t}) => {
             />
           </IonItem>
           <IonItem>
-            <IonLabel position="stacked"><Trans>current_overtime</Trans><IonText color="danger"> *</IonText></IonLabel>
+            <IonLabel position="stacked"><Trans>initial_overtime</Trans><IonText color="danger"> *</IonText></IonLabel>
             <IonInput
               inputmode="decimal"
               required
               type="number"
-              name="currentOvertime"
-              value={tempUserSettings.currentOvertime}
+              name="initialOvertime"
+              value={tempUserSettings.initialOvertime}
               onIonChange={event => handleChange(event)}
             />
           </IonItem>
           <IonItem>
-            <IonLabel position="stacked"><Trans>employed_since</Trans><IonText color="danger"> *</IonText></IonLabel>
+            <IonLabel position="stacked"><Trans>capture_since</Trans><IonText color="danger"> *</IonText></IonLabel>
             <IonDatetime
               displayFormat="DD. MMM. YYYY"
               placeholder={t('select_date')}
-              name="employedSince"
-              value={tempUserSettings.employedSince}
+              name="captureSince"
+              value={tempUserSettings.captureSince}
               onIonChange={event => handleChange(event)}></IonDatetime>
           </IonItem>
           <IonItem>
@@ -181,4 +184,4 @@ const mapStateToProps = (state: any) => {
   }
 }
 
-export default withTranslation()(connect(mapStateToProps)(UserSettings))
+export default withTranslation()(connect(mapStateToProps)(UserSettingsComponent))

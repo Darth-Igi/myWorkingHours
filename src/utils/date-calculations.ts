@@ -26,6 +26,7 @@ const addWorkingDay = (currentDate: Date|Moment, sum: number, untilDate: Date, p
 
   const newDate = moment.utc(currentDate).add(1, 'days')
 
+  // TODO: consider daysPerWeek < 5
   return addWorkingDay(newDate, isDateAPublicHoliday(newDate, publicHolidays) || isWeekend(newDate) ? sum : sum + 1, untilDate, publicHolidays)
 
 }
@@ -34,14 +35,26 @@ export const getPublicHolidays = async (federalState: string, currentYear: numbe
   const storageKey = 'PublicHolidays_' + federalState + currentYear
 
   const publicHolidaysValue = await Storage.get(({key: storageKey}))
-  return JSON.parse(<string>publicHolidaysValue.value)
+  return JSON.parse(publicHolidaysValue.value as string)
 }
 
-export const getWorkingDaysSince = async (federalState: string, sinceDate?: string|Date):Promise<number> => {
-  const fromDate: Date = sinceDate ? new Date(sinceDate) : new Date(new Date().getFullYear(), 0, 1)
-  const publicHolidays = await getPublicHolidays(federalState, fromDate.getFullYear())
+export const getWorkingDaysSince = async (federalState: string, captureSince: string, sinceDate?: string ):Promise<number> => {
+  const fromDate: Moment = sinceDate ? moment(sinceDate) : moment(captureSince)
+  const publicHolidays = await getPublicHolidays(federalState, fromDate.get('year'))
 
   return addWorkingDay(fromDate, 0, new Date(), publicHolidays)
+}
+
+export const getFilteredPublicHolidays = function (rawEntries: any, userSettings: any) {
+  const publicHolidays = Object.entries(rawEntries)
+  return publicHolidays.map(([key, value]) => ({
+    name: key,
+    data: (value as any).datum
+  })).filter(({name}) =>
+    name !== 'Gründonnerstag' &&
+    !(name === 'Reformationstag' && userSettings.federalState === 'BW') &&
+    name !== 'Augsburger Friedensfest' &&
+    name !== 'Buß- und Bettag')
 }
 
 

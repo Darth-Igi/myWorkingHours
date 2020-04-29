@@ -1,8 +1,7 @@
 {
   "days_per_week": "Wochenarbeitstage",
-  "current_overtime": "Aktuelle Überstunden",
+  "capture_since": "Erfassung seit",
   "dismiss": "Abbrechen",
-  "employed_since": "Beschäftigt seit",
   "error": {
     "popup_error_not_up_to_date": "Die App ist nicht aktuell",
     "popup_error_no_connection":"Keine Internetverbindung",
@@ -17,8 +16,10 @@
   },
   "federal_state": "Bundesland",
   "hours_per_week": "Wochenstunden",
+  "initial_overtime": "Initiale Überstunden",
   "main_title": "Meine Arbeitszeiten",
   "my_overtime": "Meine Überstunden",
+  "my_vacations": "Mein Urlaub",
   "please_wait": "Bitte warten...",
   "save": "Speichern",
   "select": "Auswählen",
