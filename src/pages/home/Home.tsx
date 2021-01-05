@@ -44,7 +44,6 @@ type Home = {
 }
 
 const Home: React.FC<Home> = ({t, dispatch, userSettings, userValues, openPopoverEvent, isPopoverOpen}) => {
-  console.log('userSettings', userSettings)
   const {isModalOpen: isUserModalOpen} = userSettings
   const {currentOvertime, plannedHolidays} = userValues
 
@@ -128,7 +127,7 @@ const Home: React.FC<Home> = ({t, dispatch, userSettings, userValues, openPopove
               <IonIcon icon={add}/>
             </IonFabButton>
             <IonFabList side="top">
-              <IonFabButton><IonIcon icon={business}/></IonFabButton>
+              <IonFabButton routerLink="/work-entry"><IonIcon icon={business}/></IonFabButton>
               <IonFabButton><IonIcon icon={airplane}/></IonFabButton>
             </IonFabList>
           </IonFab>

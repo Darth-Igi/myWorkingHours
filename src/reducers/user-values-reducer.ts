@@ -1,6 +1,19 @@
+export type WorkingTime = {
+  date: string,
+  workingHours: number,
+  comeTime: string,
+  leaveTime: string,
+  pauseMinutes: number
+}
+
+export type VacationTime = {
+  date: string,
+  vacationHours: number
+}
+
 export type UserValues = {
-  bookedTimes: {date: string, hours: number}[],
-  bookedVacations: {date: string, hours: number}[],
+  bookedTimes: WorkingTime[],
+  bookedVacations: VacationTime[],
   plannedHolidays: number,
   leaveDaysAlreadyTaken: number,
   remainingDaysOfVacation: number,
@@ -14,7 +27,7 @@ export default (
     plannedHolidays: 0,
     leaveDaysAlreadyTaken: 0,
     remainingDaysOfVacation: 0,
-    currentOvertime: '',
+    currentOvertime: ''
   },
   action: any
 ) => {
@@ -24,22 +37,22 @@ export default (
         ...state,
         bookedTimes: action.payload.bookedTimes,
         bookedVacations: action.payload.bookedVacations,
-        currentOvertime: action.payload.currentOvertime,
+        currentOvertime: action.payload.currentOvertime
       }
     case 'USER_VALUES_SET_BOOKED_TIMES':
       return {
         ...state,
-        bookedTimes: action.payload,
+        bookedTimes: action.payload
       }
     case 'USER_VALUES_SET_BOOKED_VACATIONS':
       return {
         ...state,
-        bookedVacations: action.payload,
+        bookedVacations: action.payload
       }
     case 'USER_VALUES_SET_CURRENT_OVERTIME':
       return {
         ...state,
-        currentOvertime: action.payload,
+        currentOvertime: action.payload
       }
 
     default:

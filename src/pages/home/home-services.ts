@@ -1,13 +1,13 @@
 import {UserSettings} from '../user-settings/user-settings-reducer'
 import {apiCall} from '../../utils/server-communication'
 import {getFilteredPublicHolidays, getWorkingDaysSince} from '../../utils/date-calculations'
-import {UserValues} from '../../reducers/user-values-reducer'
+import {UserValues, VacationTime, WorkingTime} from '../../reducers/user-values-reducer'
 import Big from 'big.js'
 import {Plugins} from '@capacitor/core'
 
 const {Storage} = Plugins
 
-const calculateOvertime = async (result: number | void, userSettings: UserSettings, dispatch: any): Promise<string> => {
+const calculateOvertime = async (result: number | void, userSettings: UserSettings): Promise<string> => {
   const shouldWorkingHours = (result ? result * userSettings.hoursPerWeek / userSettings.daysPerWeek : 0) - userSettings.initialOvertime
 
   const userValuesResult = await Storage.get(({key: 'user-values'}))
@@ -20,11 +20,11 @@ const calculateOvertime = async (result: number | void, userSettings: UserSettin
     currentOvertime: ''
   }
 
-  const bookedTimesSum = userValues.bookedTimes.reduce((acc: number, curr: { date: string, hours: number }): number => {
-    return parseFloat(Big(curr.hours).plus(acc).valueOf())
+  const bookedTimesSum = userValues.bookedTimes.reduce((acc: number, curr: WorkingTime): number => {
+    return parseFloat(Big(curr.workingHours).plus(acc).valueOf())
   }, 0)
-  const bookedVacationsSum = userValues.bookedVacations.reduce((acc: number, curr: { date: string, hours: number }): number => {
-    return parseFloat(Big(curr.hours).plus(acc).valueOf())
+  const bookedVacationsSum = userValues.bookedVacations.reduce((acc: number, curr: VacationTime): number => {
+    return parseFloat(Big(curr.vacationHours).plus(acc).valueOf())
   }, 0)
 
   return Big(bookedTimesSum).plus(bookedVacationsSum).minus(shouldWorkingHours).valueOf()
@@ -72,7 +72,7 @@ export const initializeApp = async (dispatch: any) => {
 export const updateData = (dispatch: any, userSettings: UserSettings) => {
   getWorkingDaysSince(userSettings.federalState, userSettings.captureSince).then(
     workingDays => {
-      return calculateOvertime(workingDays, userSettings, dispatch)
+      return calculateOvertime(workingDays, userSettings)
     }
   ).then(currentOvertime => {
     dispatch({

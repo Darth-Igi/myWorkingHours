@@ -18,6 +18,7 @@ import '@ionic/react/css/display.css'
 /* Theme variables */
 import './theme/variables.css'
 import Home from './pages/home/Home'
+import WorkEntry from './pages/work-entry/WorkEntry'
 
 const App: React.FC = () => {
   return (
@@ -25,6 +26,7 @@ const App: React.FC = () => {
       <IonReactRouter>
         <IonRouterOutlet>
           <Route path="/home" component={Home} exact={true}/>
+          <Route path="/work-entry" component={WorkEntry} exact={true}/>
           <Route exact path="/" render={() => <Redirect to="/home"/>}/>
         </IonRouterOutlet>
       </IonReactRouter>
