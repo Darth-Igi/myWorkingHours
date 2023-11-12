@@ -6,7 +6,7 @@
     "@capacitor/core": "^2.4.5",
     "@ionic/react": "^5.5.2",
     "@ionic/react-router": "^5.5.2",
-    "axios": "^0.21.1",
+    "axios": "^1.6.0",
     "big.js": "^6.0.3",
     "i18next": "^19.8.4",
     "i18next-browser-languagedetector": "^6.0.1",
