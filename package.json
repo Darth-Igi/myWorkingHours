@@ -45,7 +45,7 @@
     ]
   },
   "devDependencies": {
-    "@capacitor/cli": "^2.4.5",
+    "@capacitor/cli": "^5.5.1",
     "@types/big.js": "^6.0.2",
     "@types/jest": "^26.0.19",
     "@types/node": "^14.14.20",
